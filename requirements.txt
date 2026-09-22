@@ -1,4 +1,19 @@
-customtkinter>=5.2.0
+# Core pipeline and the headless CLI. Nothing here imports a GUI toolkit.
 rembg[cpu]>=2.0.60
 Pillow>=10.0
-numpy
+numpy>=1.24
+onnxruntime>=1.17
+
+# Despeckle, fill-holes and click-to-remove are built on scipy's connected components.
+# Without it those three controls disable themselves and the rest still works.
+scipy>=1.10
+
+# Where settings.json is kept between runs.
+platformdirs>=3.0
+
+# The desktop window (main.py). The CLI does not need these.
+customtkinter>=5.2.0
+
+# Optional: drag-and-drop a file onto the window. The app runs fine without it and says so,
+# which is why this is commented out rather than required — uncomment to enable dropping.
+# tkinterdnd2>=0.4.0

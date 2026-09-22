@@ -1,0 +1,642 @@
+..............................................................................invalid command name "2058624408128update"
+    while executing
+"2058624408128update"
+    ("after" script)
+invalid command name "2058624271168check_dpi_scaling"
+    while executing
+"2058624271168check_dpi_scaling"
+    ("after" script)
+..E.E.EEE..EEE.EEE.EEE.EEE............................................................................
+======================================================================
+ERROR: test_a_mask_preview_exists_for_the_mask_view (tests.test_gui.Window.test_a_mask_preview_exists_for_the_mask_view)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 288, in test_a_mask_preview_exists_for_the_mask_view
+    self.load()
+    ~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 60, in load
+    self.app.set_original(orig, "", "test")
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\app.py", line 292, in set_original
+    self.single.on_new_image()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 566, in on_new_image
+    self.refresh()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 606, in refresh
+    self.canvas.set_image(self.prev_orig, crop=None, pscale=self.pscale)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 77, in set_image
+    self.redraw()
+    ~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 120, in redraw
+    self.canvas.create_image(cx, cy, image=self._photo, tags="img")
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3043, in create_image
+    return self._create('image', args, kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3029, in _create
+    return self.tk.getint(self.tk.call(
+                          ~~~~~~~~~~~~^
+        self._w, 'create', itemType,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        *(args + self._options(cnf, kw))))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: image "pyimage11" does not exist
+
+======================================================================
+ERROR: test_a_whole_drag_is_one_undo_step (tests.test_gui.Window.test_a_whole_drag_is_one_undo_step)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 215, in test_a_whole_drag_is_one_undo_step
+    self.load()
+    ~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 60, in load
+    self.app.set_original(orig, "", "test")
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\app.py", line 292, in set_original
+    self.single.on_new_image()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 566, in on_new_image
+    self.refresh()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 606, in refresh
+    self.canvas.set_image(self.prev_orig, crop=None, pscale=self.pscale)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 77, in set_image
+    self.redraw()
+    ~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 120, in redraw
+    self.canvas.create_image(cx, cy, image=self._photo, tags="img")
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3043, in create_image
+    return self._create('image', args, kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3029, in _create
+    return self.tk.getint(self.tk.call(
+                          ~~~~~~~~~~~~^
+        self._w, 'create', itemType,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        *(args + self._options(cnf, kw))))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: image "pyimage12" does not exist
+
+======================================================================
+ERROR: test_click_to_remove_deletes_a_leftover_but_not_the_subject (tests.test_gui.Window.test_click_to_remove_deletes_a_leftover_but_not_the_subject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 252, in test_click_to_remove_deletes_a_leftover_but_not_the_subject
+    self.load()
+    ~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 60, in load
+    self.app.set_original(orig, "", "test")
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\app.py", line 292, in set_original
+    self.single.on_new_image()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 566, in on_new_image
+    self.refresh()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 606, in refresh
+    self.canvas.set_image(self.prev_orig, crop=None, pscale=self.pscale)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 77, in set_image
+    self.redraw()
+    ~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 120, in redraw
+    self.canvas.create_image(cx, cy, image=self._photo, tags="img")
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3043, in create_image
+    return self._create('image', args, kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3029, in _create
+    return self.tk.getint(self.tk.call(
+                          ~~~~~~~~~~~~^
+        self._w, 'create', itemType,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        *(args + self._options(cnf, kw))))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: image "pyimage13" does not exist
+
+======================================================================
+ERROR: test_erasing_clears_the_source_pixel_under_the_cursor (tests.test_gui.Window.test_erasing_clears_the_source_pixel_under_the_cursor)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 203, in test_erasing_clears_the_source_pixel_under_the_cursor
+    self.load()
+    ~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 60, in load
+    self.app.set_original(orig, "", "test")
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\app.py", line 292, in set_original
+    self.single.on_new_image()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 566, in on_new_image
+    self.refresh()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 606, in refresh
+    self.canvas.set_image(self.prev_orig, crop=None, pscale=self.pscale)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 77, in set_image
+    self.redraw()
+    ~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 120, in redraw
+    self.canvas.create_image(cx, cy, image=self._photo, tags="img")
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3043, in create_image
+    return self._create('image', args, kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3029, in _create
+    return self.tk.getint(self.tk.call(
+                          ~~~~~~~~~~~~^
+        self._w, 'create', itemType,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        *(args + self._options(cnf, kw))))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: image "pyimage14" does not exist
+
+======================================================================
+ERROR: test_every_view_renders (tests.test_gui.Window.test_every_view_renders)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 281, in test_every_view_renders
+    self.load()
+    ~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 60, in load
+    self.app.set_original(orig, "", "test")
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\app.py", line 292, in set_original
+    self.single.on_new_image()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 566, in on_new_image
+    self.refresh()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 606, in refresh
+    self.canvas.set_image(self.prev_orig, crop=None, pscale=self.pscale)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 77, in set_image
+    self.redraw()
+    ~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 120, in redraw
+    self.canvas.create_image(cx, cy, image=self._photo, tags="img")
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3043, in create_image
+    return self._create('image', args, kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3029, in _create
+    return self.tk.getint(self.tk.call(
+                          ~~~~~~~~~~~~^
+        self._w, 'create', itemType,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        *(args + self._options(cnf, kw))))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: image "pyimage15" does not exist
+
+======================================================================
+ERROR: test_output_layers_are_the_original_before_any_cutout (tests.test_gui.Window.test_output_layers_are_the_original_before_any_cutout)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 319, in test_output_layers_are_the_original_before_any_cutout
+    self.app.set_original(orig, "", "test")
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\app.py", line 292, in set_original
+    self.single.on_new_image()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 566, in on_new_image
+    self.refresh()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 606, in refresh
+    self.canvas.set_image(self.prev_orig, crop=None, pscale=self.pscale)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 77, in set_image
+    self.redraw()
+    ~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 120, in redraw
+    self.canvas.create_image(cx, cy, image=self._photo, tags="img")
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3043, in create_image
+    return self._create('image', args, kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3029, in _create
+    return self.tk.getint(self.tk.call(
+                          ~~~~~~~~~~~~^
+        self._w, 'create', itemType,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        *(args + self._options(cnf, kw))))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: image "pyimage16" does not exist
+
+======================================================================
+ERROR: test_output_layers_come_from_the_edited_layer (tests.test_gui.Window.test_output_layers_come_from_the_edited_layer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 311, in test_output_layers_come_from_the_edited_layer
+    self.load()
+    ~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 60, in load
+    self.app.set_original(orig, "", "test")
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\app.py", line 292, in set_original
+    self.single.on_new_image()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 566, in on_new_image
+    self.refresh()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 606, in refresh
+    self.canvas.set_image(self.prev_orig, crop=None, pscale=self.pscale)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 77, in set_image
+    self.redraw()
+    ~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 120, in redraw
+    self.canvas.create_image(cx, cy, image=self._photo, tags="img")
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3043, in create_image
+    return self._create('image', args, kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3029, in _create
+    return self.tk.getint(self.tk.call(
+                          ~~~~~~~~~~~~^
+        self._w, 'create', itemType,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        *(args + self._options(cnf, kw))))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: image "pyimage17" does not exist
+
+======================================================================
+ERROR: test_painting_is_refused_while_looking_at_the_original (tests.test_gui.Window.test_painting_is_refused_while_looking_at_the_original)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 270, in test_painting_is_refused_while_looking_at_the_original
+    self.load()
+    ~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 60, in load
+    self.app.set_original(orig, "", "test")
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\app.py", line 292, in set_original
+    self.single.on_new_image()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 566, in on_new_image
+    self.refresh()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 606, in refresh
+    self.canvas.set_image(self.prev_orig, crop=None, pscale=self.pscale)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 77, in set_image
+    self.redraw()
+    ~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 120, in redraw
+    self.canvas.create_image(cx, cy, image=self._photo, tags="img")
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3043, in create_image
+    return self._create('image', args, kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3029, in _create
+    return self.tk.getint(self.tk.call(
+                          ~~~~~~~~~~~~^
+        self._w, 'create', itemType,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        *(args + self._options(cnf, kw))))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: image "pyimage18" does not exist
+
+======================================================================
+ERROR: test_re_running_the_model_does_not_lose_the_touch_up (tests.test_gui.Window.test_re_running_the_model_does_not_lose_the_touch_up)
+The whole reason `rebuild` keeps a snapshot: a stray Ctrl+R must not cost an
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 327, in test_re_running_the_model_does_not_lose_the_touch_up
+    orig, cut = self.load()
+                ~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 60, in load
+    self.app.set_original(orig, "", "test")
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\app.py", line 292, in set_original
+    self.single.on_new_image()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 566, in on_new_image
+    self.refresh()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 606, in refresh
+    self.canvas.set_image(self.prev_orig, crop=None, pscale=self.pscale)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 77, in set_image
+    self.redraw()
+    ~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 120, in redraw
+    self.canvas.create_image(cx, cy, image=self._photo, tags="img")
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3043, in create_image
+    return self._create('image', args, kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3029, in _create
+    return self.tk.getint(self.tk.call(
+                          ~~~~~~~~~~~~^
+        self._w, 'create', itemType,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        *(args + self._options(cnf, kw))))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: image "pyimage19" does not exist
+
+======================================================================
+ERROR: test_reset_refinements_puts_every_slider_back (tests.test_gui.Window.test_reset_refinements_puts_every_slider_back)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 147, in test_reset_refinements_puts_every_slider_back
+    self.load()
+    ~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 60, in load
+    self.app.set_original(orig, "", "test")
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\app.py", line 292, in set_original
+    self.single.on_new_image()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 566, in on_new_image
+    self.refresh()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 606, in refresh
+    self.canvas.set_image(self.prev_orig, crop=None, pscale=self.pscale)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 77, in set_image
+    self.redraw()
+    ~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 120, in redraw
+    self.canvas.create_image(cx, cy, image=self._photo, tags="img")
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3043, in create_image
+    return self._create('image', args, kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3029, in _create
+    return self.tk.getint(self.tk.call(
+                          ~~~~~~~~~~~~^
+        self._w, 'create', itemType,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        *(args + self._options(cnf, kw))))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: image "pyimage20" does not exist
+
+======================================================================
+ERROR: test_round_tripping_a_source_point_through_the_transform (tests.test_gui.Window.test_round_tripping_a_source_point_through_the_transform)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 188, in test_round_tripping_a_source_point_through_the_transform
+    self.load()
+    ~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 60, in load
+    self.app.set_original(orig, "", "test")
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\app.py", line 292, in set_original
+    self.single.on_new_image()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 566, in on_new_image
+    self.refresh()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 606, in refresh
+    self.canvas.set_image(self.prev_orig, crop=None, pscale=self.pscale)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 77, in set_image
+    self.redraw()
+    ~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 120, in redraw
+    self.canvas.create_image(cx, cy, image=self._photo, tags="img")
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3043, in create_image
+    return self._create('image', args, kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3029, in _create
+    return self.tk.getint(self.tk.call(
+                          ~~~~~~~~~~~~^
+        self._w, 'create', itemType,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        *(args + self._options(cnf, kw))))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: image "pyimage21" does not exist
+
+======================================================================
+ERROR: test_the_brush_starts_disabled_until_there_is_a_cutout (tests.test_gui.Window.test_the_brush_starts_disabled_until_there_is_a_cutout)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 90, in test_the_brush_starts_disabled_until_there_is_a_cutout
+    self.load()
+    ~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 60, in load
+    self.app.set_original(orig, "", "test")
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\app.py", line 292, in set_original
+    self.single.on_new_image()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 566, in on_new_image
+    self.refresh()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 606, in refresh
+    self.canvas.set_image(self.prev_orig, crop=None, pscale=self.pscale)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 77, in set_image
+    self.redraw()
+    ~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 120, in redraw
+    self.canvas.create_image(cx, cy, image=self._photo, tags="img")
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3043, in create_image
+    return self._create('image', args, kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3029, in _create
+    return self.tk.getint(self.tk.call(
+                          ~~~~~~~~~~~~^
+        self._w, 'create', itemType,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        *(args + self._options(cnf, kw))))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: image "pyimage22" does not exist
+
+======================================================================
+ERROR: test_the_output_size_label_tracks_the_upscale (tests.test_gui.Window.test_the_output_size_label_tracks_the_upscale)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 303, in test_the_output_size_label_tracks_the_upscale
+    self.load()
+    ~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 60, in load
+    self.app.set_original(orig, "", "test")
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\app.py", line 292, in set_original
+    self.single.on_new_image()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 566, in on_new_image
+    self.refresh()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 606, in refresh
+    self.canvas.set_image(self.prev_orig, crop=None, pscale=self.pscale)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 77, in set_image
+    self.redraw()
+    ~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 120, in redraw
+    self.canvas.create_image(cx, cy, image=self._photo, tags="img")
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3043, in create_image
+    return self._create('image', args, kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3029, in _create
+    return self.tk.getint(self.tk.call(
+                          ~~~~~~~~~~~~^
+        self._w, 'create', itemType,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        *(args + self._options(cnf, kw))))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: image "pyimage23" does not exist
+
+======================================================================
+ERROR: test_the_right_button_restores_instead_of_erasing (tests.test_gui.Window.test_the_right_button_restores_instead_of_erasing)
+Right-drag is the undo-of-a-single-mistake escape hatch, so it has to invert.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 239, in test_the_right_button_restores_instead_of_erasing
+    orig, cut = self.load()
+                ~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 60, in load
+    self.app.set_original(orig, "", "test")
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\app.py", line 292, in set_original
+    self.single.on_new_image()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 566, in on_new_image
+    self.refresh()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 606, in refresh
+    self.canvas.set_image(self.prev_orig, crop=None, pscale=self.pscale)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 77, in set_image
+    self.redraw()
+    ~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 120, in redraw
+    self.canvas.create_image(cx, cy, image=self._photo, tags="img")
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3043, in create_image
+    return self._create('image', args, kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3029, in _create
+    return self.tk.getint(self.tk.call(
+                          ~~~~~~~~~~~~^
+        self._w, 'create', itemType,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        *(args + self._options(cnf, kw))))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: image "pyimage24" does not exist
+
+======================================================================
+ERROR: test_the_touch_tab_counts_the_edits (tests.test_gui.Window.test_the_touch_tab_counts_the_edits)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 94, in test_the_touch_tab_counts_the_edits
+    self.load()
+    ~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 60, in load
+    self.app.set_original(orig, "", "test")
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\app.py", line 292, in set_original
+    self.single.on_new_image()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 566, in on_new_image
+    self.refresh()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 606, in refresh
+    self.canvas.set_image(self.prev_orig, crop=None, pscale=self.pscale)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 77, in set_image
+    self.redraw()
+    ~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 120, in redraw
+    self.canvas.create_image(cx, cy, image=self._photo, tags="img")
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3043, in create_image
+    return self._create('image', args, kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3029, in _create
+    return self.tk.getint(self.tk.call(
+                          ~~~~~~~~~~~~^
+        self._w, 'create', itemType,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        *(args + self._options(cnf, kw))))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: image "pyimage25" does not exist
+
+======================================================================
+ERROR: test_trimming_does_not_shift_the_brush (tests.test_gui.Window.test_trimming_does_not_shift_the_brush)
+Trimming slides the image under the cursor, so the crop origin has to be added
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 179, in test_trimming_does_not_shift_the_brush
+    self.load()
+    ~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 60, in load
+    self.app.set_original(orig, "", "test")
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\app.py", line 292, in set_original
+    self.single.on_new_image()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 566, in on_new_image
+    self.refresh()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 606, in refresh
+    self.canvas.set_image(self.prev_orig, crop=None, pscale=self.pscale)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 77, in set_image
+    self.redraw()
+    ~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 120, in redraw
+    self.canvas.create_image(cx, cy, image=self._photo, tags="img")
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3043, in create_image
+    return self._create('image', args, kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3029, in _create
+    return self.tk.getint(self.tk.call(
+                          ~~~~~~~~~~~~^
+        self._w, 'create', itemType,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        *(args + self._options(cnf, kw))))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: image "pyimage26" does not exist
+
+======================================================================
+ERROR: test_undo_puts_the_pixel_back (tests.test_gui.Window.test_undo_puts_the_pixel_back)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 227, in test_undo_puts_the_pixel_back
+    self.load()
+    ~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\tests\test_gui.py", line 60, in load
+    self.app.set_original(orig, "", "test")
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\app.py", line 292, in set_original
+    self.single.on_new_image()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 566, in on_new_image
+    self.refresh()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\single.py", line 606, in refresh
+    self.canvas.set_image(self.prev_orig, crop=None, pscale=self.pscale)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 77, in set_image
+    self.redraw()
+    ~~~~~~~~~~~^^
+  File "C:\Users\FRIO\x\rmbg\rmbg\gui\canvas.py", line 120, in redraw
+    self.canvas.create_image(cx, cy, image=self._photo, tags="img")
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3043, in create_image
+    return self._create('image', args, kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tkinter\__init__.py", line 3029, in _create
+    return self.tk.getint(self.tk.call(
+                          ~~~~~~~~~~~~^
+        self._w, 'create', itemType,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        *(args + self._options(cnf, kw))))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: image "pyimage27" does not exist
+
+----------------------------------------------------------------------
+Ran 180 tests in 78.314s
+
+FAILED (errors=17)
