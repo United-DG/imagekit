@@ -431,7 +431,34 @@ class App(ctk.CTk, _DND):
                 self.bind(f"<{mod}-Shift-Z>", lambda e: self.redo())
             except tk.TclError:
                 pass
+            # Ctrl+0 and Ctrl+1: the whole frame, and one to one. Photoshop's pair, and the
+            # only two zoom levels worth a key. Bound here rather than in the loop above so
+            # the page does not have to exist yet when this runs.
+            for key, fn in (("0", lambda: self.single._zoom_fit()),
+                            ("1", lambda: self.single._zoom_actual())):
+                try:
+                    self.bind(f"<{mod}-{key}>", lambda e, f=fn: f())
+                except tk.TclError:
+                    pass
         self.bind("<KeyPress>", self._bare_key)
+        self.bind("<KeyPress-space>", lambda e: self._space(True, e))
+        self.bind("<KeyRelease-space>", lambda e: self._space(False, e))
+
+    def _space(self, down: bool, event=None) -> str | None:
+        """Hold space for the hand tool, the way every editor does it.
+
+        Bound on press *and* release: a modifier that only latched on would leave the window
+        panning for good. Returns "break" so the keystroke stops here — otherwise it would
+        also activate whichever button happens to hold focus, which is a click nobody asked
+        for — but not while typing, where a space is just a space.
+        """
+        if self._typing():
+            return None
+        canvas = self.single.canvas
+        if canvas.space_held != down:
+            canvas.space_held = down
+            canvas.set_cursor("fleur" if down else "")
+        return "break"
 
     def _bare_key(self, event) -> None:
         """Single-key shortcuts. Skipped while typing, so they never eat a keystroke."""
@@ -451,9 +478,11 @@ class App(ctk.CTk, _DND):
         return isinstance(focused, (tk.Entry, tk.Text))
 
     def _nudge_brush(self, direction: int) -> None:
+        """`[` and `]`: a quarter either way, inside whatever range the image set."""
         page = self.single
-        step = max(2, round(page.brush_size * 0.25))
-        size = float(min(400, max(2, page.brush_size + direction * step)))
+        lo, hi = page.size_row.bounds()
+        step = max(1.0, page.brush_size * 0.25)
+        size = float(min(hi, max(lo, page.brush_size + direction * step)))
         page.brush_size = size
         page.size_row.set(size)
         self.set_status(f"Brush size {size:.0f} px")

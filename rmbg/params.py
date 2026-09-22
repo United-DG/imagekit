@@ -28,6 +28,22 @@ RANGES = {
 }
 
 
+def brush_range(long_edge: int) -> tuple[int, int]:
+    """The brush bounds worth offering for an image whose long edge is `long_edge`.
+
+    `RANGES["brush_size"]` is the *absolute* span, and it is far too wide to put on a linear
+    slider: on a 1200 px photo every usable size — a 6 to 86 px radius — lands in the first
+    fifth of the bar, and the remaining four fifths jumps to a brush wider than a quarter of
+    the picture. What a sensible maximum is depends entirely on the image, so the working
+    range is derived per image and the row is re-ranged when a new one is opened.
+
+    A fifth of the long edge is as large as a touch-up brush ever needs to be.
+    """
+    lo = 2
+    hi = int(min(400, max(24, round(long_edge / 5))))
+    return lo, max(lo + 1, hi)
+
+
 @dataclass
 class Params:
     """Everything that shapes the output.

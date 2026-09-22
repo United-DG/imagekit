@@ -11,7 +11,7 @@ from ..config import (DEFAULT_MODEL, FORMATS, MODELS, MODEL_BY_ID, PREVIEW_MAX, 
                       spec_for_label)
 from ..edit import Segment, paint_segment
 from ..imaging import load_image, mask_preview
-from ..params import RANGES
+from ..params import RANGES, brush_range
 from ..pipeline import render
 from .canvas import ImageCanvas
 from .theme import C, pick
@@ -19,6 +19,7 @@ from .widgets import SliderRow, button, label, segment, switch
 
 VIEWS = ["Original", "Result", "Mask"]
 TOOLS = ["Erase", "Restore", "Remove leftover"]
+TABS = ("Remove", "Refine", "Touch up", "Backdrop", "Export")
 
 
 class SinglePage(ctk.CTkFrame):
@@ -34,6 +35,7 @@ class SinglePage(ctk.CTkFrame):
         self.prev_rgb: Image.Image | None = None
         self.prev_alpha: Image.Image | None = None
         self._refresh_job = None
+        self._pscale_job = None
 
         # touch-up state
         self.tool = "erase"
@@ -41,6 +43,7 @@ class SinglePage(ctk.CTkFrame):
         self.brush_softness = 0.5
         self._dragging = False
         self._drag_last: tuple[float, float] | None = None
+        self._bodies: dict = {}       # tab name -> its scrolling body
 
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
@@ -69,11 +72,26 @@ class SinglePage(ctk.CTkFrame):
         self.view_seg.set("Result")
         self.view_seg.grid(row=0, column=3)
 
+        # Zoom cluster, Photoshop's order: out, the figure, in, then back to the whole frame.
+        # The figure is the honest one — canvas pixels per *source* pixel — so it reads the
+        # fit percentage rather than 100% until the image is actually shown one to one.
+        self.zoom_out_btn = button(self.app, tb, "−", lambda: self._zoom_by(1 / 1.25),
+                                   width=30)
+        self.zoom_out_btn.grid(row=0, column=4, padx=(14, 0))
+        self.zoom_lbl = ctk.CTkLabel(tb, text="", font=self.app.fonts.small,
+                                     text_color=C.muted, width=54)
+        self.zoom_lbl.grid(row=0, column=5)
+        self.zoom_in_btn = button(self.app, tb, "+", lambda: self._zoom_by(1.25), width=30)
+        self.zoom_in_btn.grid(row=0, column=6)
+        self.zoom_fit_btn = button(self.app, tb, "Fit", self._zoom_fit, width=42)
+        self.zoom_fit_btn.grid(row=0, column=7, padx=(6, 0))
+
         self.canvas = ImageCanvas(
             self.app, stage,
             on_press=self._press, on_drag=self._drag, on_release=self._release,
-            on_hover=self._hover)
+            on_hover=self._hover, on_zoom=self._zoom_moved)
         self.canvas.grid(row=1, column=0, sticky="nsew", padx=14, pady=(0, 14))
+        self.canvas.set_hint("Wheel zooms about the cursor · space or middle-drag pans")
 
         self.app.lockable += [self.open_btn, self.save_btn]
 
@@ -90,13 +108,60 @@ class SinglePage(ctk.CTkFrame):
             segmented_button_unselected_color=C.field,
             segmented_button_unselected_hover_color=C.line, text_color=C.text)
         self.tabs.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)
-        for name in ("Remove", "Refine", "Touch up", "Backdrop", "Export"):
-            self.tabs.add(name).grid_columnconfigure(0, weight=1)
-        self._tab_remove(self.tabs.tab("Remove"))
-        self._tab_refine(self.tabs.tab("Refine"))
-        self._tab_touch(self.tabs.tab("Touch up"))
-        self._tab_backdrop(self.tabs.tab("Backdrop"))
-        self._tab_export(self.tabs.tab("Export"))
+        for name in TABS:
+            self.tabs.add(name)
+        self._tab_remove(self._body("Remove"))
+        self._tab_refine(self._body("Refine"))
+        self._tab_touch(self._body("Touch up"))
+        self._tab_backdrop(self._body("Backdrop"))
+        self._tab_export(self._body("Export"))
+
+    def _body(self, name: str):
+        """The scrolling body for one tab.
+
+        The panel is a fixed 380 px wide box and the Refine tab asks for roughly 920 px of
+        height in the ~690 px it is offered, so its last five controls sat past the bottom
+        edge and were unreachable at *any* window size — which is how a perfectly working
+        brightness slider came to look like a missing one. Every tab scrolls now, so no
+        control can be lost to layout arithmetic again.
+        """
+        tab = self.tabs.tab(name)
+        tab.grid_columnconfigure(0, weight=1)
+        tab.grid_rowconfigure(0, weight=1)
+        body = ctk.CTkScrollableFrame(tab, fg_color="transparent", corner_radius=0,
+                                      scrollbar_button_color=C.line,
+                                      scrollbar_button_hover_color=C.muted)
+        body.grid(row=0, column=0, sticky="nsew")
+        body.grid_columnconfigure(0, weight=1)
+        self._bodies[name] = body
+        # `add=True` is not optional: customtkinter binds <Configure> on this same widget to
+        # keep the scrollregion current, and a plain bind would silently replace it — the
+        # region would never update, the scrollbar would think the tab always fits, and the
+        # hidden controls would stay hidden.
+        #
+        # `after_idle` so the read of yview() happens once the layout has settled rather than
+        # mid-resize, when it still describes the previous geometry.
+        body.bind("<Configure>", lambda _e: self.after_idle(self._sync_scrollbars), add=True)
+        return body
+
+    def _sync_scrollbars(self) -> None:
+        """Show a tab's scrollbar only when there is something to scroll.
+
+        customtkinter grids that scrollbar unconditionally, which would otherwise put a
+        permanent grey strip down the side of every tab, including the short ones. Each body
+        is only touched when its state actually differs, so this cannot ping-pong with the
+        <Configure> event that triggered it.
+        """
+        for body in self._bodies.values():
+            try:
+                fits = body._parent_canvas.yview() == (0.0, 1.0)
+                managed = bool(body._scrollbar.winfo_manager())
+                if fits and managed:
+                    body._scrollbar.grid_remove()
+                elif not fits and not managed:
+                    body._scrollbar.grid()
+            except Exception:                  # not laid out yet, or already torn down
+                continue
 
     # ================================================================== tabs
     def _tab_remove(self, t) -> None:
@@ -219,12 +284,12 @@ class SinglePage(ctk.CTkFrame):
         self.tool_note = label(self.app, t, "", muted=True, wrap=330)
         self.tool_note.grid(row=2, column=0, sticky="w", pady=(8, 16))
 
-        self.size_row = SliderRow(self.app, t, "Brush size", *RANGES["brush_size"],
-                                  int(self.brush_size),
-                                  fmt="{:.0f} px", steps=200,
-                                  on_change=self._size_changed,
-                                  note="In source-image pixels, so it means the same thing "
-                                       "whatever the zoom.")
+        self.size_row = SliderRow(self.app, t, "Brush size", *brush_range(2048),
+                                  self.brush_size, steps=None, curve="log",
+                                  on_change=self._size_changed, render=self._brush_text,
+                                  note="In source-image pixels, so the size means the same "
+                                       "thing whatever the zoom. The readout also says how "
+                                       "wide that looks on screen right now.")
         self.size_row.grid(row=3, column=0, sticky="ew", pady=(0, 12))
         self.soft_row = SliderRow(self.app, t, "Softness", *RANGES["softness"],
                                   self.brush_softness,
@@ -426,6 +491,35 @@ class SinglePage(ctk.CTkFrame):
     def _size_changed(self, value: float) -> None:
         self.brush_size = float(value)
 
+    def _brush_text(self, value: float) -> str:
+        """The brush size in source pixels, plus what that looks like on screen.
+
+        Source pixels are the only unit that stays put as the view zooms, so that is what is
+        stored — but it is also why a perfectly sensible brush reads as "24" while looking
+        tiny, or why 60 looks modest and covers a third of the picture. Showing both numbers
+        is what stops the slider feeling arbitrary.
+        """
+        try:
+            on_screen = value * self.canvas.display_per_source()
+        except Exception:                      # no canvas yet, or nothing drawn
+            on_screen = value
+        return f"{value:.0f} px · {max(1, round(on_screen))} px on screen"
+
+    def _fit_brush_to_image(self) -> None:
+        """Re-range the brush for the image on screen.
+
+        A 400 px ceiling is right for a 12 MP photo and absurd for a 400 px crop, and the
+        useful band has to land in the middle of the bar for both. This is the one place the
+        bounds move.
+        """
+        original = self.app.original
+        if original is None:
+            return
+        lo, hi = brush_range(max(original.size))
+        self.size_row.set_range(lo, hi)
+        self.brush_size = min(max(self.brush_size, lo), hi)
+        self.size_row.set(self.brush_size)
+
     def _active_tool(self, button: int) -> str:
         """Left button uses the picked tool; the right button inverts it."""
         if self.tool == "remove":
@@ -530,11 +624,86 @@ class SinglePage(ctk.CTkFrame):
         else:
             self.edit_state.configure(text="No manual edits yet.", text_color=C.muted)
 
+    # ================================================================== navigation
+    def _zoom_by(self, factor: float) -> None:
+        """The +/- buttons: zoom about the middle of the view, which is where the eye is."""
+        c = self.canvas.canvas
+        self.canvas.zoom_by(factor, anchor=(c.winfo_width() / 2.0, c.winfo_height() / 2.0))
+
+    def _zoom_fit(self) -> None:
+        self.canvas.fit()
+
+    def _zoom_actual(self) -> None:
+        """100%: one screen pixel per source pixel, the only zoom that can be trusted."""
+        self.canvas.set_zoom_percent(100.0)
+
+    def _zoom_moved(self) -> None:
+        """The canvas's magnification changed. Called on every notch of the wheel, so the
+        label updates here and anything expensive waits for the gesture to stop."""
+        self._update_zoom_label()
+        if self._pscale_job:
+            self.after_cancel(self._pscale_job)
+        self._pscale_job = self.after(220, self._apply_detail)
+
+    def _update_zoom_label(self) -> None:
+        pct = self.canvas.zoom_percent()
+        self.zoom_lbl.configure(text=f"{pct:.0f}%" if pct >= 10 else f"{pct:.1f}%")
+
+    def _wanted_pscale(self) -> float:
+        """The proxy resolution worth having at this magnification.
+
+        A fixed proxy is fine while the whole image is on screen and useless the moment it is
+        magnified — 2.9x of blur at 100% on a 4000 px photo, which makes judging an edge, the
+        one thing this app is for, actively misleading. So the proxy is sized to the display
+        instead: never coarser than `PREVIEW_MAX` would give, never finer than the screen can
+        show, and never finer than the source itself.
+
+        Sizing it exactly to the magnification is what makes the two agree — with
+        `pscale = magnification`, `display_per_source` comes out at `magnification` again, so
+        the view does not shift when the proxy is rebuilt under it.
+        """
+        original = self.app.original
+        if original is None:
+            return 1.0
+        w, h = original.size
+        if not w or not h:
+            return 1.0
+        base = min(1.0, PREVIEW_MAX / max(w, h))
+        return float(min(1.0, max(base, self.canvas.magnification())))
+
+    def _apply_detail(self) -> None:
+        """Rebuild the proxies at the resolution the current zoom deserves.
+
+        Deferred out of the wheel handler on purpose: this resamples the image twice and
+        re-renders, which is far too much to do per notch. Between the gesture and this
+        running, the view is already correct — the canvas scales whatever proxy it has — it
+        is only softer than it needs to be.
+
+        A stroke in progress holds it off too. The proxies are rebuilt from the full-resolution
+        layer, so an edit would survive, but resampling the whole frame mid-drag is exactly the
+        cost the proxy exists to avoid.
+        """
+        if self._pscale_job:
+            self.after_cancel(self._pscale_job)
+        self._pscale_job = None
+        if self.app.original is None:
+            return
+        if self._dragging:
+            self._pscale_job = self.after(220, self._apply_detail)
+            return
+        wanted = self._wanted_pscale()
+        if abs(wanted - self.pscale) < 0.02:
+            return                       # already close enough; resampling is not free
+        self.pscale = wanted
+        self._make_image_proxies()
+        self._make_edit_proxies()
+        self.refresh()
+
     # ================================================================== preview
     def _make_image_proxies(self) -> None:
         app = self.app
         w, h = app.original.size
-        self.pscale = min(1.0, PREVIEW_MAX / max(w, h))
+        self.pscale = self._wanted_pscale()
         size = (max(1, round(w * self.pscale)), max(1, round(h * self.pscale)))
         if self.pscale < 1:
             self.prev_orig = app.original.convert("RGB").resize(size, Image.LANCZOS)
@@ -559,8 +728,12 @@ class SinglePage(ctk.CTkFrame):
         """A different file was opened."""
         self._dragging = False
         self._drag_last = None
+        # Back to the whole frame *before* the proxies are sized, since the proxy resolution
+        # is chosen from the magnification and the previous image's zoom is meaningless here.
+        self.canvas.reset_view()
         self._make_image_proxies()
         self._make_edit_proxies()
+        self._fit_brush_to_image()
         self.sync_touch()
         self.canvas.set_image(None)
         self.refresh()
@@ -610,6 +783,10 @@ class SinglePage(ctk.CTkFrame):
         else:
             self.canvas.set_image(r.img, crop=r.crop, pscale=self.pscale)
         self._update_size_label(r)
+        # The canvas may have re-fitted or the view may zoomed, so both the brush's "on
+        # screen" figure and the magnification are only trustworthy once the draw has happened.
+        self.size_row.refresh()
+        self._update_zoom_label()
 
     def _update_size_label(self, r) -> None:
         if r is not None:
